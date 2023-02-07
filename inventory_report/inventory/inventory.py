@@ -16,7 +16,11 @@ class Inventory:
             elif file_path.endswith(".xml"):
                 data = xmltodict.parse(file.read())["dataset"]["record"]
 
-            if type == "completo":
-                return CompleteReport.generate(data)
-            elif type == "simples":
-                return SimpleReport.generate(data)
+        return Inventory.generate_report(data, type)
+
+    @staticmethod
+    def generate_report(data, type):
+        if type == "completo":
+            return CompleteReport.generate(data)
+        elif type == "simples":
+            return SimpleReport.generate(data)
